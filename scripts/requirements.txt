@@ -1,0 +1,10 @@
+# Reference-side dependencies for converting insightface model packs to GGUF and
+# dumping golden baselines. These are NOT needed at inference time (the C++/ggml
+# engine has no Python runtime dependency) - only for scripts/convert_*.py and
+# scripts/gen_baseline.py.
+insightface
+onnx
+onnxruntime
+opencv-python-headless
+numpy
+gguf

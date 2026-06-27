@@ -1,0 +1,20 @@
+/build*/
+/.venv/
+/third_party/.ggml-patch.lock
+/models/*
+!/models/MANIFEST.md
+*.gguf
+__pycache__/
+*.pyc
+/.cache/
+
+# Test fixtures: golden baselines (*.gguf) stay generated/uncommitted, but the
+# CC0/public-domain face images + their provenance are committed (parity tests
+# need rights-clear inputs; see tests/fixtures/PROVENANCE.md).
+tests/fixtures/*
+!tests/fixtures/README.md
+!tests/fixtures/PROVENANCE.md
+!tests/fixtures/face_a.jpg
+!tests/fixtures/face_b.jpg
+!tests/fixtures/face_c.jpg
+!tests/fixtures/multi.jpg

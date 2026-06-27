@@ -1,0 +1,64 @@
+# Famous public-domain artwork portraits for the face-detect.cpp demo.
+#
+# PD BASIS: every file is a faithful photographic reproduction of a 2D artwork
+# whose creator died well over 100 years ago (PD-old-100). Under the Wikimedia
+# PD-Art / Bridgeman v. Corel principle, a faithful 2D reproduction of a 2D
+# public-domain work carries no new copyright -> public domain worldwide.
+# Each entry: local_file -> Commons File page -> artist (death year) -> PD basis.
+# Downloaded via Special:FilePath (?width=1400) on 2026-06-24.
+
+mona_lisa.jpg
+  https://commons.wikimedia.org/wiki/File:Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg
+  Leonardo da Vinci (d. 1519). PD-old-100 / PD-Art.
+
+pearl_earring.jpg
+  https://commons.wikimedia.org/wiki/File:1665_Girl_with_a_Pearl_Earring.jpg
+  Johannes Vermeer (d. 1675). PD-old-100 / PD-Art.
+
+van_gogh.jpg
+  https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_Self-portrait_with_grey_felt_hat_-_Google_Art_Project.jpg
+  Vincent van Gogh (d. 1890). PD-old-100 / PD-Art.
+
+rembrandt.jpg
+  https://commons.wikimedia.org/wiki/File:Rembrandt_van_Rijn_-_Self-Portrait_-_Google_Art_Project.jpg
+  Rembrandt van Rijn (d. 1669). PD-old-100 / PD-Art.
+
+laughing_cavalier.jpg
+  https://commons.wikimedia.org/wiki/File:Frans_Hals_%E2%80%93_The_Laughing_Cavalier.jpg
+  Frans Hals (d. 1666). PD-old-100 / PD-Art.
+
+napoleon.jpg
+  https://commons.wikimedia.org/wiki/File:Jacques-Louis_David_-_The_Emperor_Napoleon_in_His_Study_at_the_Tuileries_-_Google_Art_Project.jpg
+  Jacques-Louis David (d. 1825). PD-old-100 / PD-Art.
+
+van_eyck.jpg
+  https://commons.wikimedia.org/wiki/File:Portrait_of_a_Man_by_Jan_van_Eyck-small.jpg
+  Jan van Eyck (d. 1441), "Portrait of a Man (Self-Portrait?)" / Man in a Red Turban. PD-old-100 / PD-Art.
+
+durer.jpg
+  https://commons.wikimedia.org/wiki/File:Albrecht_D%C3%BCrer_-_1500_self-portrait_(High_resolution_and_detail).jpg
+  Albrecht Duerer (d. 1528), Self-Portrait at Twenty-Eight. PD-old-100 / PD-Art.
+
+velazquez_innocent.jpg
+  https://commons.wikimedia.org/wiki/File:Retrato_del_Papa_Inocencio_X._Roma,_by_Diego_Vel%C3%A1zquez.jpg
+  Diego Velazquez (d. 1660), Portrait of Pope Innocent X. PD-old-100 / PD-Art.
+
+madame_x.jpg
+  https://commons.wikimedia.org/wiki/File:Madame_X_(Madame_Pierre_Gautreau),_John_Singer_Sargent,_1884_(unfree_frame_crop).jpg
+  John Singer Sargent (d. 1925), Madame X. PD-old-100 (author d. >100y? no: d.1925 -> 101y in 2026) and PD-1923 (published 1884). PD-Art. PD in US (pre-1929) and life+70 jurisdictions.
+
+whistlers_mother.jpg
+  https://commons.wikimedia.org/wiki/File:Whistlers_Mother_high_res.jpg
+  James McNeill Whistler (d. 1903), Arrangement in Grey and Black No.1. PD-old-100 / PD-Art.
+
+girl_red_hat.jpg
+  https://commons.wikimedia.org/wiki/File:Johannes_Vermeer,_Girl_with_the_Red_Hat,_c._1669,_NGA_60.jpg
+  Johannes Vermeer (d. 1675), Girl with a Red Hat. PD-old-100 / PD-Art (NGA open-access).
+
+botticelli.jpg
+  https://commons.wikimedia.org/wiki/File:Botticelli_-_Portrait_of_a_Young_Woman,_probably_Simonetta_Vespucci.jpg
+  Sandro Botticelli (d. 1510), Portrait of a Young Woman (Simonetta Vespucci). PD-old-100 / PD-Art.
+
+ingres.jpg
+  https://commons.wikimedia.org/wiki/File:Madame_Marie_Marcotte_(Marcotte_de_Sainte-Marie)_by_Jean-Auguste-Dominique_Ingres_-_1826.jpg
+  Jean-Auguste-Dominique Ingres (d. 1867), Portrait of Madame Marcotte de Sainte-Marie. PD-old-100 / PD-Art.
