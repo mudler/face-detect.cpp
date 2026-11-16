@@ -70,6 +70,27 @@ int facedetect_capi_embed_path(facedetect_ctx* ctx, const char* image_path,
 int facedetect_capi_embed_rgb(facedetect_ctx* ctx, const unsigned char* rgb,
                               int width, int height, float** out_vec, int* out_dim);
 
+// Like facedetect_capi_embed_rgb, but skips the internal detection step: the
+// face box (`x1`,`y1`,`x2`,`y2` in pixel coordinates of the image) is used
+// directly with a standard 5-point landmark template for the alignment warp.
+// Intended as a fallback for tight face crops that the internal detector
+// rejects (small faces, large profiles) while an outer detector has already
+// confirmed a face there. Returns an error on a degenerate box.
+int facedetect_capi_embed_rgb_box(facedetect_ctx* ctx, const unsigned char* rgb,
+                                  int width, int height,
+                                  float x1, float y1, float x2, float y2,
+                                  float** out_vec, int* out_dim);
+
+// Like facedetect_capi_embed_rgb_box, but the alignment warp uses the
+// caller-provided 5-point landmarks instead of the bbox template. `kps10`
+// must point to 10 floats: (x0,y0),...,(x4,y4) in pixel coordinates of the
+// image, in the standard SCRFD order (left eye, right eye, nose tip, left
+// mouth corner, right mouth corner). Prefer this over the box variant when an
+// outer detector has supplied landmarks.
+int facedetect_capi_embed_rgb_kps(facedetect_ctx* ctx, const unsigned char* rgb,
+                                  int width, int height, const float* kps10,
+                                  float** out_vec, int* out_dim);
+
 // Detect ALL faces in an image FILE, returning a malloc'd UTF-8 JSON document
 // (free with facedetect_capi_free_string) of the form:
 //

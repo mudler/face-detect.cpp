@@ -40,6 +40,20 @@ public:
     // (no face found, unsupported pack, ...).
     std::vector<float> embed(const Image& img) const;
 
+    // Like embed(), but for tight face crops that the internal detector
+    // rejects (small faces, large profiles): no detection is run; the
+    // caller-provided box is used with a standard 5-point landmark template
+    // (insightface's bbox-relative face ratios) for the alignment warp.
+    // Throws on failure (empty image, degenerate box, alignment failure).
+    std::vector<float> embed_box(const Image& img, float x1, float y1,
+                                 float x2, float y2) const;
+
+    // Like embed_box, but uses the caller-provided 5-point landmarks (from an
+    // outer detector that has already confirmed the face) for the alignment
+    // warp. Prefer over embed_box when real landmarks are available — the
+    // bbox template degrades badly on large profiles.
+    std::vector<float> embed_kps(const Image& img, const Landmarks5& lmk) const;
+
     // Analyze every face: detect + genderage (and anti-spoof when present).
     // Throws std::runtime_error on failure.
     std::vector<Face> analyze(const Image& img) const;
