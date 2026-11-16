@@ -51,6 +51,43 @@ std::vector<float> Model::embed(const Image& img) const {
     return arcface_embed(loader_, aligned, global_backend());
 }
 
+namespace {
+// Shared tail of embed/embed_box/embed_kps: align to the 5-point template
+// and run the recognizer.
+std::vector<float> align_and_embed(const ModelLoader& loader, const Image& img,
+                                   const Landmarks5& lmk) {
+    Image aligned;
+    if (!norm_crop(img, lmk, aligned, (int)loader.config().rec_input_size))
+        throw std::runtime_error("facedetect: alignment failed");
+    if (loader.config().recognizer == "sface")
+        return sface_embed(loader, aligned, global_backend());
+    return arcface_embed(loader, aligned, global_backend());
+}
+}  // namespace
+std::vector<float> Model::embed_box(const Image& img, float x1, float y1,
+                                    float x2, float y2) const {
+    if (img.empty()) throw std::runtime_error("facedetect: empty image");
+    const float w = x2 - x1, h = y2 - y1;
+    if (w <= 0.f || h <= 0.f)
+        throw std::runtime_error("facedetect: invalid box for embed_box");
+    // Standard insightface 5-point template relative to a face bbox
+    // (the ratios used when a detector supplies no landmarks): left eye,
+    // right eye, nose tip, left mouth corner, right mouth corner.
+    const Landmarks5 lmk = {{
+        {x1 + 0.30f * w, y1 + 0.42f * h},
+        {x1 + 0.70f * w, y1 + 0.42f * h},
+        {x1 + 0.50f * w, y1 + 0.56f * h},
+        {x1 + 0.30f * w, y1 + 0.71f * h},
+        {x1 + 0.70f * w, y1 + 0.71f * h},
+    }};
+    return align_and_embed(loader_, img, lmk);
+}
+
+std::vector<float> Model::embed_kps(const Image& img, const Landmarks5& lmk) const {
+    if (img.empty()) throw std::runtime_error("facedetect: empty image");
+    return align_and_embed(loader_, img, lmk);
+}
+
 std::vector<Face> Model::analyze(const Image& img) const {
     if (img.empty()) throw std::runtime_error("facedetect: empty image");
     // Per detected face, run the genderage head when the pack carries it (the `ga.`

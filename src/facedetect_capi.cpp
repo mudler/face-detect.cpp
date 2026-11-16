@@ -170,6 +170,62 @@ extern "C" int facedetect_capi_embed_rgb(facedetect_ctx* ctx, const unsigned cha
     }
 }
 
+extern "C" int facedetect_capi_embed_rgb_box(facedetect_ctx* ctx, const unsigned char* rgb,
+                                             int width, int height,
+                                             float x1, float y1, float x2, float y2,
+                                             float** out_vec, int* out_dim) {
+    if (!ctx || !ctx->model || !rgb || !out_vec || !out_dim) return 1;
+    try {
+        fd::Image img;
+        if (!fd::image_from_rgb(rgb, width, height, img)) {
+            set_error(ctx, "invalid rgb image dimensions");
+            return 2;
+        }
+        std::vector<float> emb = ctx->model->embed_box(img, x1, y1, x2, y2);
+        float* buf = dup_vec(emb);
+        if (!buf) { set_error(ctx, "out of memory"); return 3; }
+        *out_vec = buf;
+        *out_dim = (int)emb.size();
+        return 0;
+    } catch (const std::exception& e) {
+        set_error(ctx, e.what());
+        return 4;
+    } catch (...) {
+        set_error(ctx, "unknown error");
+        return 4;
+    }
+}
+
+extern "C" int facedetect_capi_embed_rgb_kps(facedetect_ctx* ctx, const unsigned char* rgb,
+                                             int width, int height, const float* kps10,
+                                             float** out_vec, int* out_dim) {
+    if (!ctx || !ctx->model || !rgb || !kps10 || !out_vec || !out_dim) return 1;
+    try {
+        fd::Image img;
+        if (!fd::image_from_rgb(rgb, width, height, img)) {
+            set_error(ctx, "invalid rgb image dimensions");
+            return 2;
+        }
+        fd::Landmarks5 lmk = {};
+        for (int i = 0; i < 5; ++i) {
+            lmk[i][0] = kps10[2 * i];
+            lmk[i][1] = kps10[2 * i + 1];
+        }
+        std::vector<float> emb = ctx->model->embed_kps(img, lmk);
+        float* buf = dup_vec(emb);
+        if (!buf) { set_error(ctx, "out of memory"); return 3; }
+        *out_vec = buf;
+        *out_dim = (int)emb.size();
+        return 0;
+    } catch (const std::exception& e) {
+        set_error(ctx, e.what());
+        return 4;
+    } catch (...) {
+        set_error(ctx, "unknown error");
+        return 4;
+    }
+}
+
 extern "C" char* facedetect_capi_detect_path_json(facedetect_ctx* ctx,
                                                   const char* image_path) {
     if (!ctx || !ctx->model || !image_path) return nullptr;
